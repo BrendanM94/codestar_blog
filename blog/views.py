@@ -1,15 +1,11 @@
-from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views import generic
 
 from .models import Post
 
 
-def my_blog(request):
-    return HttpResponse("Hello, blog!")
-
-
-class PostListView(ListView):
+class PostList(generic.ListView):
     model = Post
-    template_name = 'blog/index.html'
+    queryset = Post.objects.all()
+    template_name = 'blog/post_list.html'
     context_object_name = 'posts'
     paginate_by = 10
