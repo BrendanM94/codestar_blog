@@ -46,6 +46,7 @@ class Comment(models.Model):
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+    # (challenge field removed; restored to previous model state)
 
     class Meta:
         ordering = ["-created_on"]
