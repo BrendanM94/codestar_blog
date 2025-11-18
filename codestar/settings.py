@@ -26,13 +26,17 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Leave `DEBUG` configured explicitly (False in production). If SECRET_KEY is missing in
-# production raise an error so deployment won't start with a missing secret.
+# During development enable DEBUG for detailed error pages.
 DEBUG = False
-if not SECRET_KEY and not DEBUG:
-    raise RuntimeError("The SECRET_KEY environment variable must be set in production.")
+
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
+
+# Trusted origins for CSRF when deploying (add your app domains here)
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com",
+]
 
 
 # Application definition
