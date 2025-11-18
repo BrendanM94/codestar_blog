@@ -21,11 +21,16 @@ if isinstance(DB_URL, bytes):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "YOUR-SECRET-KEY-HERE"
+# Load SECRET_KEY from environment (set in `env.py` locally or in your host's config vars).
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Leave `DEBUG` configured explicitly (False in production). If SECRET_KEY is missing in
+# production raise an error so deployment won't start with a missing secret.
 DEBUG = False
+if not SECRET_KEY and not DEBUG:
+    raise RuntimeError("The SECRET_KEY environment variable must be set in production.")
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
 
