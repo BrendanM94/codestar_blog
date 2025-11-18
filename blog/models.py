@@ -18,7 +18,11 @@ class Post(models.Model):
         related_name="blog_posts",
     )
     content = models.TextField()
+    # Optional excerpt/teaser shown on index pages. Allow blank entries.
+    excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    # Auto-updated timestamp: updated_on changes to now() on each save
+    updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
