@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h1>Latest posts</h1>
 {% if posts %}
 <ul class="post-list">
@@ -20,20 +18,25 @@
 </ul>
 
 {% if is_paginated %}
-<div class="pagination">
+<ul class="pagination" role="navigation" aria-label="Pagination">
     {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}">« previous</a>
+    <li>
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+    </li>
     {% endif %}
 
-    <span
-        >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span
-    >
+    <li>
+        <span class="page-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    </li>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next »</a>
+    <li>
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
+    </li>
     {% endif %}
-</div>
-{% endif %} {% else %}
+</ul>
+{% endif %}
+{% else %}
 <p>No posts yet.</p>
 {% endif %} {% endblock %} {% block copyright %} Copyright 2023 Brendan {%
 endblock %}
