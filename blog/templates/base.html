@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Codestar Blog{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'blog/css/site.css' %}" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container">
+                <h1 class="site-title"><a href="/">Codestar Blog</a></h1>
+                <nav class="site-nav">
+                    <a href="/">Home</a>
+                    <a href="/admin/">Admin</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container">{% block content %}{% endblock %}</main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <small>&copy; {{ now|date:"Y" }} Codestar Blog</small>
+            </div>
+        </footer>
+    </body>
+</html>
