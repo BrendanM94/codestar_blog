@@ -2,9 +2,10 @@
 
 {% block content %}
 <article class="post-detail">
-  <h1>{{ post.title }}</h1>
-  <p class="post-meta">By {{ post.author }} — {{ post.created_on|date:"Y-m-d H:i" }}</p>
-  <div class="post-content">{{ post.content|safe }}</div>
-  <p><a href="{% url 'home' %}">&larr; Back to posts</a></p>
+    <img src="{% static 'images/default.svg' %}" alt="Post image" class="post-image" style="max-width:100%;height:auto;margin-bottom:1rem;">
+    <h1>{{ post.title }}</h1>
+    <p class="post-meta">By {{ post.author }} — {{ post.created_on|date:"Y-m-d H:i" }}</p>
+    <div class="post-content">{{ post.content|safe }}</div>
+    <p><a href="{% url 'home' %}">&larr; Back to posts</a></p>
 </article>
 {% endblock %}
