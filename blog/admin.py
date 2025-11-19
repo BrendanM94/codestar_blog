@@ -5,21 +5,21 @@ from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-	list_display = ('title', 'slug', 'status')
-	search_fields = ['title']
-	list_filter = ('status',)
-	prepopulated_fields = {'slug': ('title',)}
-	summernote_fields = ('content',)
+    list_display = ('title', 'slug', 'status', 'created_on')
+    search_fields = ['title', 'content']
+    list_filter = ('status', 'created_on')
+    prepopulated_fields = {'slug': ('title',)}
+    summernote_fields = ('content',)
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-	list_display = ('__str__', 'author', 'post', 'approved', 'created_on')
-	list_filter = ('approved', 'created_on', 'author')
-	search_fields = ('body', 'author__username', 'post__title')
-	actions = ['approve_comments']
+    list_display = ('__str__', 'author', 'post', 'approved', 'created_on')
+    list_filter = ('approved', 'created_on', 'author')
+    search_fields = ('body', 'author__username', 'post__title')
+    actions = ['approve_comments']
 
-	def approve_comments(self, request, queryset):
-		queryset.update(approved=True)
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
 
-	approve_comments.short_description = "Mark selected comments as approved"
+    approve_comments.short_description = "Mark selected comments as approved"
