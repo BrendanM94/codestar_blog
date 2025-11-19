@@ -4,7 +4,7 @@
 <ul class="post-list">
     {% for post in posts %}
     <li>
-        <h2>{{ post.title }}</h2>
+        <h2><a class="post-link" href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
         <p class="card-text">{{ post.excerpt }}</p>
         <p class="post-meta">
             <strong>Author:</strong> {{ post.author }} —
@@ -21,22 +21,28 @@
 <ul class="pagination" role="navigation" aria-label="Pagination">
     {% if page_obj.has_previous %}
     <li>
-        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-link"
+            >&laquo; PREV</a
+        >
     </li>
     {% endif %}
 
     <li>
-        <span class="page-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        <span class="page-info"
+            >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages
+            }}</span
+        >
     </li>
 
     {% if page_obj.has_next %}
     <li>
-        <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link"
+            >NEXT &raquo;</a
+        >
     </li>
     {% endif %}
 </ul>
-{% endif %}
-{% else %}
+{% endif %} {% else %}
 <p>No posts yet.</p>
 {% endif %} {% endblock %} {% block copyright %} Copyright 2023 Brendan {%
 endblock %}
